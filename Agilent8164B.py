@@ -43,6 +43,7 @@ def get_measure(session):
     session.write('fetc1:pow?')
     time.sleep(0.001)
     measure = session.read()
+    return measure
     print('Mesure')
     print(measure)
     time.sleep(0.1)
@@ -68,7 +69,8 @@ def power_measure(session, continuous=True, *args):
                 laser_off(session)
                 print('Quitter les mesures')
                 break
-            get_measure(session)
+            mesure = get_measure(session)
+            return mesure
     else :
         laser_on(session)
         get_measure(session)
